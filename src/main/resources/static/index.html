@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urban Nest - Find Your Dream Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes spin-slow {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        .animate-spin-slow {
+            animation: spin-slow 3s linear infinite;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 relative">
+    <!-- Global Grid Pattern Background -->
+    <div class="fixed inset-0 opacity-20 pointer-events-none z-0">
+        <svg class="absolute w-full h-full" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="global-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(99, 102, 241, 0.3)" stroke-width="1"/>
+                </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#global-grid)" />
+        </svg>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-slate-900/80 backdrop-blur-xl shadow-2xl border-b border-amber-500/30 transition-all duration-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="/" class="flex items-center space-x-3 group cursor-pointer">
+                    <div class="relative w-11 h-11 bg-gradient-to-br from-amber-500 via-yellow-500 to-orange-500 rounded-xl flex items-center justify-center shadow-lg shadow-amber-500/50 transform hover:rotate-12 hover:scale-125 transition-all duration-500 hover:shadow-2xl hover:shadow-amber-500/70">
+                        <span class="text-white font-extrabold text-xl tracking-tight relative z-10">UN</span>
+                        <div class="absolute -inset-1 bg-gradient-to-br from-amber-400 via-yellow-400 to-orange-400 rounded-xl opacity-0 group-hover:opacity-70 blur-lg transition-opacity duration-500 -z-10"></div>
+                    </div>
+                    <h1 class="text-xl sm:text-2xl font-bold bg-gradient-to-r from-amber-400 via-yellow-400 to-orange-400 bg-clip-text text-transparent tracking-tight group-hover:scale-105 transition-transform duration-500">Urban Nest</h1>
+                </a>
+                <div class="hidden md:flex items-center space-x-2">
+                    <a href="/" class="relative text-gray-300 hover:text-white transition-all duration-300 px-5 py-2.5 rounded-xl font-medium text-sm tracking-wide transform hover:scale-105 group">
+                        <span class="relative z-10">Home</span>
+                        <div class="absolute inset-0 bg-gradient-to-r from-amber-500/20 to-yellow-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></div>
+                    </a>
+                    <a href="/listings.html" class="relative text-gray-300 hover:text-white transition-all duration-300 px-5 py-2.5 rounded-xl font-medium text-sm tracking-wide transform hover:scale-105 group">
+                        <span class="relative z-10">Listings</span>
+                        <div class="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></div>
+                    </a>
+                    <a href="/listings.html#filters" class="relative text-gray-300 hover:text-white transition-all duration-300 px-5 py-2.5 rounded-xl font-medium text-sm tracking-wide transform hover:scale-105 group flex items-center space-x-2">
+                        <svg class="w-4 h-4 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"></path>
+                        </svg>
+                        <span class="relative z-10">Filter</span>
+                        <div class="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-pink-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></div>
+                    </a>
+                    <a href="/contact.html" class="relative bg-gradient-to-r from-amber-500 via-yellow-500 to-orange-500 text-white px-6 py-2.5 rounded-xl font-semibold text-sm tracking-wide shadow-lg shadow-amber-500/40 hover:shadow-xl hover:shadow-amber-500/60 transform hover:scale-105 transition-all duration-300 overflow-hidden group ml-2">
+                        <span class="relative z-10">Contact</span>
+                        <div class="absolute inset-0 bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </a>
+                </div>
+                <!-- Mobile menu button -->
+                <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg hover:bg-slate-800 transition-colors">
+                    <svg class="w-6 h-6 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-slate-800/95 backdrop-blur-xl border-t border-amber-500/20">
+            <div class="px-4 py-4 space-y-2">
+                <a href="/" class="block text-gray-300 hover:text-white hover:bg-gradient-to-r hover:from-amber-500/20 hover:to-yellow-500/20 transition-all duration-300 px-4 py-3 rounded-xl font-medium text-sm tracking-wide">Home</a>
+                <a href="/listings.html" class="block text-gray-300 hover:text-white hover:bg-gradient-to-r hover:from-indigo-500/20 hover:to-purple-500/20 transition-all duration-300 px-4 py-3 rounded-xl font-medium text-sm tracking-wide">Listings</a>
+                <a href="/listings.html#filters" class="block text-gray-300 hover:text-white hover:bg-gradient-to-r hover:from-purple-500/20 hover:to-pink-500/20 transition-all duration-300 px-4 py-3 rounded-xl font-medium text-sm tracking-wide flex items-center space-x-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"></path>
+                    </svg>
+                    <span>Filter</span>
+                </a>
+                <a href="/contact.html" class="block bg-gradient-to-r from-amber-500 via-yellow-500 to-orange-500 text-white px-4 py-3 rounded-xl font-semibold text-sm tracking-wide text-center shadow-lg hover:shadow-xl transform hover:scale-102 transition-all">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden min-h-screen pt-16">
+        <!-- Animated Gradient Orbs -->
+        <div class="absolute top-20 left-10 w-96 h-96 bg-amber-500/20 rounded-full blur-3xl animate-pulse"></div>
+        <div class="absolute bottom-20 right-10 w-96 h-96 bg-indigo-500/20 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-yellow-500/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 2s;"></div>
+        
+        <div class="relative max-w-7xl mx-auto px-4 py-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-screen z-10">
+            <!-- Left Content -->
+            <div class="text-left space-y-6">
+                <h2 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight">
+                    <span id="typingText" class="bg-gradient-to-r from-amber-400 via-yellow-400 to-orange-400 bg-clip-text text-transparent"></span>
+                    <span id="cursor" class="animate-pulse text-amber-400">|</span>
+                </h2>
+                <p class="text-lg sm:text-xl text-gray-300 leading-relaxed opacity-0 transition-opacity duration-1000" id="subtitle">
+                    Discover the best properties in your favorite locations with advanced search and verified listings.
+                </p>
+                
+                <!-- Search Bar -->
+                <div class="flex flex-col sm:flex-row gap-3 opacity-0 transition-opacity duration-1000 pt-4" id="searchBar">
+                    <input type="text" id="searchInput" 
+                        placeholder="Search by location (e.g., Mumbai, Bangalore)..."
+                        class="flex-1 px-6 py-4 rounded-xl bg-white/10 backdrop-blur-lg border border-amber-500/30 text-white placeholder-gray-400 focus:border-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-400/50 transition-all shadow-lg">
+                    <button onclick="searchProperties()" 
+                        class="px-8 py-4 bg-gradient-to-r from-amber-500 via-yellow-500 to-orange-500 text-white font-semibold rounded-xl hover:shadow-2xl hover:shadow-amber-500/50 hover:scale-105 transition-all duration-300 transform w-full sm:w-auto">
+                        Search Properties
+                    </button>
+                </div>
+                
+                <!-- CTA Button -->
+                <div class="pt-4 opacity-0 transition-opacity duration-1000" id="ctaButton" style="animation-delay: 0.5s;">
+                    <button onclick="window.location.href='#features'" class="inline-flex items-center space-x-2 text-amber-400 hover:text-amber-300 transition-colors group">
+                        <span class="text-sm font-medium">Scroll to learn more</span>
+                        <svg class="w-5 h-5 transform group-hover:translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Right Content - Property Image -->
+            <div class="relative hidden lg:block">
+                <!-- Property Image with Border and Shadow -->
+                <div class="relative mx-auto max-w-2xl rounded-3xl overflow-hidden shadow-2xl border-4 border-amber-500/30 hover:border-amber-500/50 transition-all duration-500 hover:shadow-amber-500/20 hover:scale-105 transform">
+                    <img src="/images/hero-property.png" alt="Premium Property" class="w-full h-auto object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Properties Section -->
+    <section id="features" class="py-20 relative z-10">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl sm:text-4xl font-bold text-center bg-gradient-to-r from-amber-400 via-yellow-400 to-orange-400 bg-clip-text text-transparent mb-4">Featured Properties</h2>
+            <p class="text-center text-gray-400 mb-12 max-w-2xl mx-auto">Explore our handpicked selection of premium properties across India</p>
+            <div id="featuredProperties" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Properties will be loaded dynamically via JavaScript -->
+                <div class="col-span-full text-center py-12">
+                    <div class="inline-block">
+                        <div class="relative">
+                            <svg class="w-16 h-16 text-amber-400/30 animate-spin-slow mx-auto mb-4" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
+                            </svg>
+                            <svg class="w-16 h-16 text-amber-400 animate-pulse mx-auto absolute top-0 left-1/2 transform -translate-x-1/2" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
+                            </svg>
+                        </div>
+                        <p class="text-xl text-amber-400 font-semibold bg-gradient-to-r from-amber-400 via-yellow-400 to-orange-400 bg-clip-text text-transparent">Loading properties...</p>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-12">
+                <a href="/listings.html" 
+                    class="inline-block px-8 py-4 bg-gradient-to-r from-amber-500 via-yellow-500 to-orange-500 text-white font-semibold rounded-xl hover:shadow-2xl hover:shadow-amber-500/50 hover:scale-105 transition-all duration-300 transform">
+                    View All Properties
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-20 relative z-10">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl sm:text-4xl font-bold text-center bg-gradient-to-r from-amber-400 via-yellow-400 to-orange-400 bg-clip-text text-transparent mb-4">Why Choose Urban Nest?</h2>
+            <p class="text-center text-gray-400 mb-12 max-w-2xl mx-auto">Experience the future of property search with our cutting-edge platform</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+                <div class="bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-lg p-6 sm:p-8 rounded-2xl shadow-lg hover:shadow-2xl hover:shadow-amber-500/20 hover:-translate-y-2 transition-all duration-300 transform border border-amber-500/30">
+                    <div class="text-4xl sm:text-5xl mb-4 text-center">🔍</div>
+                    <h3 class="text-lg sm:text-xl font-bold text-amber-400 mb-3 text-center">Easy Search</h3>
+                    <p class="text-sm sm:text-base text-gray-400 text-center">Find properties quickly with our advanced search filters</p>
+                </div>
+                <div class="bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-lg p-6 sm:p-8 rounded-2xl shadow-lg hover:shadow-2xl hover:shadow-indigo-500/20 hover:-translate-y-2 transition-all duration-300 transform border border-indigo-500/20">
+                    <div class="text-4xl sm:text-5xl mb-4 text-center">✅</div>
+                    <h3 class="text-lg sm:text-xl font-bold text-indigo-400 mb-3 text-center">Verified Listings</h3>
+                    <p class="text-sm sm:text-base text-gray-400 text-center">All properties are verified for authenticity and quality</p>
+                </div>
+                <div class="bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-lg p-6 sm:p-8 rounded-2xl shadow-lg hover:shadow-2xl hover:shadow-purple-500/20 hover:-translate-y-2 transition-all duration-300 transform border border-purple-500/20">
+                    <div class="text-4xl sm:text-5xl mb-4 text-center">💰</div>
+                    <h3 class="text-lg sm:text-xl font-bold text-purple-400 mb-3 text-center">Best Prices</h3>
+                    <p class="text-sm sm:text-base text-gray-400 text-center">Competitive pricing and transparent cost breakdown</p>
+                </div>
+                <div class="bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-lg p-6 sm:p-8 rounded-2xl shadow-lg hover:shadow-2xl hover:shadow-amber-500/20 hover:-translate-y-2 transition-all duration-300 transform border border-amber-500/30">
+                    <div class="text-4xl sm:text-5xl mb-4 text-center">🤝</div>
+                    <h3 class="text-lg sm:text-xl font-bold text-amber-400 mb-3 text-center">Expert Support</h3>
+                    <p class="text-sm sm:text-base text-gray-400 text-center">Professional assistance throughout your journey</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white py-12 border-t border-amber-500/30">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl sm:text-2xl font-bold mb-4 bg-gradient-to-r from-amber-400 via-yellow-400 to-orange-400 bg-clip-text text-transparent">Urban Nest</h3>
+                    <p class="text-sm sm:text-base text-gray-400">Your trusted partner in finding the perfect home.</p>
+                </div>
+                <div>
+                    <h4 class="text-base sm:text-lg font-semibold mb-4 text-gray-200">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="/" class="text-sm sm:text-base text-gray-400 hover:text-amber-400 transition">Home</a></li>
+                        <li><a href="/listings.html" class="text-sm sm:text-base text-gray-400 hover:text-amber-400 transition">Listings</a></li>
+                        <li><a href="/contact.html" class="text-sm sm:text-base text-gray-400 hover:text-amber-400 transition">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-base sm:text-lg font-semibold mb-4 text-gray-200">Contact</h4>
+                    <p class="text-sm sm:text-base text-gray-400">Email: vardhan24d@gmail.com</p>
+                    <p class="text-sm sm:text-base text-gray-400">Phone: +91-9508081252</p>
+                </div>
+            </div>
+            <div class="text-center pt-8 border-t border-amber-500/20">
+                <p class="text-sm sm:text-base text-gray-400">&copy; 2025 Urban Nest. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Assistant - Orion -->
+    <button id="orionAssistant" class="fixed bottom-6 right-6 w-16 h-16 bg-gradient-to-br from-amber-500 via-yellow-500 to-orange-500 rounded-full shadow-2xl hover:shadow-3xl hover:scale-110 transition-all duration-300 flex items-center justify-center z-50 group animate-pulse">
+        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
+        </svg>
+        <span class="absolute -top-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-white animate-ping"></span>
+        <span class="absolute -top-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-white"></span>
+        <div class="absolute bottom-full right-0 mb-2 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">
+            Hi! I'm Orion 🏡 Your AI Assistant
+        </div>
+    </button>
+
+    <!-- Orion Chat Window (Hidden by default) -->
+    <div id="orionChat" class="hidden fixed bottom-24 right-6 w-96 h-[500px] bg-white rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden border-2 border-amber-200">
+        <!-- Chat Header -->
+        <div class="bg-gradient-to-r from-amber-500 via-yellow-500 to-orange-500 text-white p-4 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center backdrop-blur">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
+                    </svg>
+                </div>
+                <div>
+                    <h3 class="font-bold text-lg">Orion AI</h3>
+                    <p class="text-xs text-white/80">Your Property Assistant</p>
+                </div>
+            </div>
+            <button id="closeOrion" class="hover:bg-white/20 rounded-full p-2 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+        
+        <!-- Chat Messages -->
+        <div id="chatMessages" class="flex-1 overflow-y-auto p-4 space-y-4 bg-gradient-to-br from-amber-50 to-orange-50">
+            <div class="flex items-start space-x-2">
+                <div class="w-8 h-8 bg-gradient-to-br from-amber-500 to-orange-500 rounded-full flex items-center justify-center flex-shrink-0">
+                    <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
+                    </svg>
+                </div>
+                <div class="bg-white rounded-2xl rounded-tl-none p-3 shadow-md max-w-[80%]">
+                    <p class="text-sm text-gray-800">Hello! I'm Orion, your AI property assistant. How can I help you find your dream home today? 🏡</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Chat Input -->
+        <div class="p-4 bg-white border-t border-gray-200">
+            <div class="flex space-x-2">
+                <input type="text" id="orionInput" placeholder="Ask me anything..." 
+                    class="flex-1 px-4 py-2 border-2 border-amber-200 rounded-full focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-200 text-sm">
+                <button id="sendMessage" class="bg-gradient-to-r from-amber-500 to-orange-500 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all duration-300 flex items-center space-x-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/orion.js"></script>
+    <script src="/js/index.js"></script>
+</body>
+</html>
