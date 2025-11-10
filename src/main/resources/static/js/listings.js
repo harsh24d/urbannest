@@ -3,8 +3,8 @@
  * Handles loading all properties and search/filter functionality
  */
 
-// API Base URL
-const API_BASE_URL = 'http://localhost:8080/api/properties';
+// API Base URL (matches current origin whether running locally or deployed)
+const API_BASE_URL = `${window.location.origin}/api/properties`;
 
 // Store all properties for client-side filtering
 let allProperties = [];
