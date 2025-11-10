@@ -6,7 +6,28 @@
 
 A modern, full-stack real estate property listing platform with a stunning dark theme and golden accents. Urban Nest provides an intuitive interface for browsing, searching, and filtering through 200+ premium properties across major Indian cities.
 
-![Urban Nest Preview](src/main/resources/static/images/hero-property.png)
+## 🖼️ Application Preview
+
+<div align="center">
+
+### 🏠 Homepage - Hero Section
+![Urban Nest Homepage](https://raw.githubusercontent.com/harsh24d/urbannest/main/src/main/resources/static/images/hero-property.png)
+
+*Stunning dark-themed interface featuring luxury property showcase with golden accents, dynamic search, and Orion AI assistant*
+
+---
+
+### ✨ Key Features Showcase
+
+| Feature | Description |
+|---------|-------------|
+| 🎨 **Dark Theme Design** | Premium slate-900/indigo-950 gradient with golden highlights |
+| 🏡 **200+ Properties** | Extensive catalog across 10+ major Indian cities |
+| 🤖 **Orion AI Assistant** | Intelligent chat bot with golden cottage icon |
+| 🔍 **Advanced Search** | Filter by location, price range, and sorting options |
+| 📱 **Fully Responsive** | Optimized for mobile, tablet, and desktop devices |
+
+</div>
 
 ## ✨ Features
 
