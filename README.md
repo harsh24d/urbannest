@@ -190,19 +190,22 @@ java -jar target/urbannest-0.0.1-SNAPSHOT.jar
 
 ### Example Requests
 
-**Get all properties:**
+**Get all properties (local / Render):**
 ```bash
 curl http://localhost:8080/api/properties
+curl https://urbannest-mrmh.onrender.com/api/properties
 ```
 
-**Get property by ID:**
+**Get property by ID (local / Render):**
 ```bash
 curl http://localhost:8080/api/properties/1
+curl https://urbannest-mrmh.onrender.com/api/properties/1
 ```
 
-**Get properties by location:**
+**Get properties by location (local / Render):**
 ```bash
 curl http://localhost:8080/api/properties/location/Mumbai
+curl https://urbannest-mrmh.onrender.com/api/properties/location/Mumbai
 ```
 
 ### Response Format

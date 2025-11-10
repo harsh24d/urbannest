@@ -3,8 +3,10 @@
  * Handles loading featured properties and search functionality
  */
 
-// API Base URL (matches current origin whether running locally or deployed)
-const API_BASE_URL = `${window.location.origin}/api/properties`;
+// API Base URL (switches between local dev and Render deployment)
+const API_BASE_URL = window.location.hostname === 'localhost'
+    ? 'http://localhost:8080/api/properties'
+    : 'https://urbannest-mrmh.onrender.com/api/properties';
 
 /**
  * Typing Animation Effect with Loop
