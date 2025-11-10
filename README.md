@@ -11,7 +11,7 @@ A modern, full-stack real estate property listing platform with a stunning dark 
 <div align="center">
 
 ### 🏠 Homepage - Hero Section
-![Urban Nest Homepage](https://raw.githubusercontent.com/harsh24d/urbannest/main/src/main/resources/static/images/hero-property.png)
+![Urban Nest Homepage](https://raw.githubusercontent.com/harsh24d/urbannest/main/src/main/resources/static/images/screenshot-homepage.png)
 
 *Stunning dark-themed interface featuring luxury property showcase with golden accents, dynamic search, and Orion AI assistant*
 
